@@ -72,7 +72,7 @@ void exit_hello(void)
     if(flagRegisterSuccess)
     {
         flagRegisterSuccess = 0;
-        register_chrdev(HELLO_MAJOR_NUM, HELLO_NAME);
+        unregister_chrdev(HELLO_MAJOR_NUM, HELLO_NAME);
     }
     printk("Good-bye~\n");
 }
