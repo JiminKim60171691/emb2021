@@ -7,7 +7,7 @@
 #define HELLO_MAJOR_NUM 290
 #define HELLO_NAME "hello"
 
-char arrData[4];
+volatile char arrData[4];
 
 static int hello_open(struct inode *inode, struct file *pfile)
 {
