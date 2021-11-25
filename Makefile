@@ -12,3 +12,6 @@ all:
 clean:
 	-rm -f *.ko *.mod.c.*.cmd modules.order Module.symvers
 	-rm -f *.o
+
+
+asdasdas
