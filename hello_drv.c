@@ -7,8 +7,6 @@
 #define HELLO_MAJOR_NUM 290
 #define HELLO_NAME "hello"
 
-char arrData[4] = 0;
-
 static int hello_open(struct inode *inode, struct file *pfile)
 {
     printk("hell_open enter\n");
@@ -17,6 +15,7 @@ static int hello_open(struct inode *inode, struct file *pfile)
 
 static ssize_t hello_read(struct file *pfile, char *pBuff, size_t size, loff_t *fd)
 {
+    char arrData[4] = {'1','2','3','4'};
     printk("hello_read enter\n");
     if(size >= 4)
     {
@@ -28,6 +27,7 @@ static ssize_t hello_read(struct file *pfile, char *pBuff, size_t size, loff_t *
 
 static ssize_t hello_write(struct file *pfile, const char *pBuff, size_t size, loff_t *fd)
 {
+    char arrData[4];
     printk("hello_write enter\n");
     if(size >= 4)
     {

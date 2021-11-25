@@ -9,15 +9,14 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-#define HELLO_DRIVER_NAME
+#define HELLO_DRIVER_NAME "/dev/hello1"
 
 int main(int argc, char **argv)
 {
-    char data[4] = {};
-    scanf("%s, &data");
+    char data[4] = {'5','6','7','8'};
     int fd;
     printf("enter test\n");
-}
+
 
 fd = open(HELLO_DRIVER_NAME, O_RDWR );
 if(fd<0)
