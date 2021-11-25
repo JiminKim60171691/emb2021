@@ -39,7 +39,7 @@ static ssize_t hello_write(struct file *pfile, const char *pBuff, size_t size, l
 
 static int hello_release(struct inode *inode, struct file *pfile)
 {
-    printk("hell_release enter\n");
+    printk("hello_release enter\n");
     return 0;
 }
 
