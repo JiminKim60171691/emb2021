@@ -36,7 +36,7 @@ printf("read value:%s\n",array);
 int count;
 printf("Nbyte 입력: ")
 scanf("%d", &count);
-unsigned int inputCmd =_IOR(0x55, 99, count);
+unsigned int inputCmd =_IOR(0x55, 99, int);
 unsigned long returnValue = ioctl(fd, inputCmd, count);
 printf("Enter CMD\n");
 close(fd);
