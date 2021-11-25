@@ -31,7 +31,7 @@ static ssize_t hello_write(struct file *pfile, const char *pBuff, size_t size, l
     printk("hello_write enter\n");
     if(size >= 4)
     {
-        copy_from_user(pBuff,arrData,4);
+        copy_from_user(arrData,pBuff,4);
         return 4;
     }
     return 0;
