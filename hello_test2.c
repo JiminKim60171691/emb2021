@@ -36,6 +36,7 @@ printf("read value:%s\n",array);
 int count;
 scanf("N번 설정:%d", &count);
 unsigned int inputCmd =_IOR(0x55, 99, count);
+unsigned long returnValue = ioctl(fd, inputCmd, count);
 printf("Enter CMD\n");
 
 close(fd);
