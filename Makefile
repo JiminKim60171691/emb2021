@@ -1,10 +1,14 @@
-all: final.elf
+obj-m := hello_test.o
+KDIR := ../linux_kernel
+PWD := $(shell pwd)
+export ARCH=arm
+export CROSS_COMPILE=arm-linux-gnueabi-
 
-final.elf : main.c 1.o myProject.h
-	gcc main.c 1.o -o final.elf
-	
-1.o: 1.c myProject.h
-	gcc -c 1.c
-
+all:
+	$(MAKE) -C $(KDIR) SUBDIRS=$(PWD) modules
+	$(CROSS_COMPILE)gcc ./hello_test.c -o drvtest.elf
+	scp *.ko ecube@192.168.0.7:/home/ecube/
+	scp *.elf ecube@192.168.0.7:/home/ecube/
 clean:
-	rm -rf *.o *.c *.elf
+	-rm -f *.ko *.mod.c.*.cmd modules.order Module.symvers
+	-rm -f *.o
