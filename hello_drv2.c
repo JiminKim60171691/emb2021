@@ -8,7 +8,7 @@
 #define HELLO_NAME "hello"
 
 static char arrData[2000];
-int i = 0
+int i = 0;
 
 static int hello_open(struct inode *inode, struct file *pfile)
 {
@@ -63,7 +63,7 @@ static long hello_ioctl(struct file *flip, unsigned int cmd, unsigned long arg)
     default:
         break;
     }
-)
+}
 
 static const struct file_operations hello_fops ={
     .owner = THIS_MODULE,
