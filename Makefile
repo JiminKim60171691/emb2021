@@ -1,4 +1,4 @@
-obj-m := hello_test.o
+obj-m := hello_drv.o
 KDIR := ../linux_kernel
 PWD := $(shell pwd)
 export ARCH=arm
