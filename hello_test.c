@@ -13,7 +13,8 @@
 
 int main(int argc, char **argv)
 {
-    char data[4] = {'5','6','7','8'};
+    char data[4];
+    scanf("%s", data);
     int fd;
     printf("enter test\n");
 
