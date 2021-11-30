@@ -73,3 +73,25 @@ int ledLiBlink(int ledNumber, int nth, int msec)
 
 
 }
+
+int ledLibSeq(void)
+{
+    sleep(1);
+    ledLibOnOff(7,1);
+    sleep(1);
+    ledLibOnOff(6,1);
+    sleep(1);
+    ledLibOnOff(5,1);
+    sleep(1);
+    ledLibOnOff(4,1);
+    sleep(1);
+    ledLibOnOff(3,1);
+    sleep(1);
+    ledLibOnOff(2,1);
+    sleep(1);
+    ledLibOnOff(1,1);
+    sleep(1);
+    ledLibOnOff(0,1);
+    sleep(1);
+    ledLibRaw(0); //전부 끔.
+}
