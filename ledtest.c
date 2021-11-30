@@ -37,7 +37,7 @@ int main(void)
         sleep(1);
      }
     
-    ledLibBlink(5, 10, 500); //5번 led 10번 깜빡 100ms 간격으로.
+    ledLiBlink(5, 10, 500); //5번 led 10번 깜빡 100ms 간격으로.
 
     ledLibSeq();
     sleep(1);
