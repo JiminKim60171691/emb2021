@@ -21,4 +21,5 @@ int ledLibRand(void);
 int ledLibwrong(void);
 // 8개 led 켜졌다 꺼짐을 3번 반복
 
+#define LED_DRV_NODE		"/dev/periled"
 #endif
