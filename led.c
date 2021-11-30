@@ -47,7 +47,7 @@ int ledLibRaw(char ledwannabe) //ledStatus에 맞게 8개의 led 전부 제어. 
     }
     else
     {
-        printf("WRONG! you must open device NODE!\r\n")
+        printf("WRONG! you must open device NODE!\r\n");
         exit(2);
     }
     ledStatus = ledwannabe;
@@ -57,7 +57,7 @@ int ledLibRaw(char ledwannabe) //ledStatus에 맞게 8개의 led 전부 제어. 
 
 int ledLibStatus(void)
 {
-  reutrn ledStatus;
+  return ledStatus;
 }
 
 int ledLiBlink(int ledNumber, int nth, int msec)
@@ -65,9 +65,9 @@ int ledLiBlink(int ledNumber, int nth, int msec)
     int i=0;
     for(i=0; i<nth; i++)
     {
-        ledLibOnOff(ledNumber, 1) //on.
+        ledLibOnOff(ledNumber, 1); //on.
         usleep(1000*msec);
-        ledLibOnOff(ledNumber, 0) //off.
+        ledLibOnOff(ledNumber, 0); //off.
 
     }
 
