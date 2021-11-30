@@ -20,3 +20,5 @@ int ledLibRand(void);
 // 랜덤하게 led on/off
 int ledLibwrong(void);
 // 8개 led 켜졌다 꺼짐을 3번 반복
+
+#endif
