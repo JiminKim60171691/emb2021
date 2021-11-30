@@ -11,7 +11,7 @@ led.o: led.h led.c
 
 ledtest: ledtest.c led.h libMyPeri.a
 	$(CC) ledtest.c -o ledtest -l MyPeri -L.
-	scp -P30201 ledtest ecube@192.168.0.7:/home/ecube
+	scp -P30201 ledtest ecube@192.168.0.9:/home/ecube
 clean:
 	rm *.o -rf
 	rm *.a -rf
