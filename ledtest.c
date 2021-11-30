@@ -42,9 +42,11 @@ int main(void)
     ledLibSeq();
     sleep(1);
 
+    for(i=0;i<9;i++)
+    {
     ledLibRand();
-    sleep(1);
-
+    usleep(200000);
+    }
     ledLibwrong(); 
     
 
