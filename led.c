@@ -68,7 +68,7 @@ int ledLiBlink(int ledNumber, int nth, int msec)
         ledLibOnOff(ledNumber, 1); //on.
         usleep(1000*msec);
         ledLibOnOff(ledNumber, 0); //off.
-
+        usleep(1000*msec);
     }
 
 }
