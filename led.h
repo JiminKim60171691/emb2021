@@ -10,7 +10,7 @@ int ledLibStatus(void);
 // 만약 0xAA가 리턴되면, (10101010) => led는 4개만 켜져있는 것이다.
 int ledLibExit(void);
 // 이 함수를 호출하면 led를 전부 끄고 driver를 close한다.
-int ledLibRaw(int ledwannabe);
+int ledLibRaw(char ledwannabe);
 // 이 함수를 호출하면 ledStatus에 맞게 8개의 led를 전부 제어한다. 예를 들어 ledLibRaw(0x80); 1개만 켜진다.
 int ledLibBlink(int ledNumber, int nth, int msec); 
 // 1~8개의 led를 하나 골라서 n번깜빡이는데, 주기가 msec
