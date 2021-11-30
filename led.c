@@ -71,27 +71,34 @@ int ledLiBlink(int ledNumber, int nth, int msec)
 
     }
 
-
 }
 
 int ledLibSeq(void)
 {
     sleep(1);
-    ledLibOnOff(7,1);
-    sleep(1);
-    ledLibOnOff(6,1);
-    sleep(1);
-    ledLibOnOff(5,1);
-    sleep(1);
-    ledLibOnOff(4,1);
-    sleep(1);
-    ledLibOnOff(3,1);
-    sleep(1);
-    ledLibOnOff(2,1);
-    sleep(1);
-    ledLibOnOff(1,1);
-    sleep(1);
-    ledLibOnOff(0,1);
-    sleep(1);
+    for(int i=7;i>=0;i--){
+        ledLibOnOff(i,1);
+        sleep(1);
+    }
     ledLibRaw(0); //전부 끔.
+    return 1;
+}
+
+int ledLibRand(void)
+{
+    int i=0;
+    i = rand()%256;
+    ledLibRaw(i);
+    return 1;
+}
+
+int ledLibwrong(void)
+{
+    for(int i=0;i<3;i++)
+    {
+        ledLibRaw(0xff);
+        msleep(500);
+        ledLibRaw(0);
+        msleep(200);
+    }
 }

@@ -15,5 +15,8 @@ int ledLibRaw(int ledstatus);
 int ledLibBlink(int ledNumber, int nth, int msec); 
 // 1~8개의 led를 하나 골라서 n번깜빡이는데, 주기가 msec
 int ledLibSeq(void);
-//  왼쪽부터 순차적으로 led가 켜지는데 8개가 다 켜지면 모두 꺼진다.
-
+// 왼쪽부터 순차적으로 led가 1초 간격으로 켜지는데 8개가 다 켜지면 모두 꺼진다.
+int ledLibRand(void);
+// 랜덤하게 led on/off
+int ledLibwrong(void);
+// 8개 led 켜졌다 꺼짐을 3번 반복
