@@ -23,11 +23,11 @@ int probeButtonPath(char *newPath)
 {
 	int returnValue = 0;
 	int number = 0;
-	FILE *fp = fopen(PROBE_FILE, "rt");
-	while (feof(fp))
+	FILE *fd = fopen(PROBE_FILE, "rt");
+	while (feof(fd))
 	{
 		char tmpStr[200];
-		fgets(tmpStr,200,fp);
+		fgets(tmpStr,200,fd);
 		if(strcmp(tmpStr, HAVE_TO_FIND_1) == 0)
 		{
 			printf("YES! I found!: %s \r\n", tmpStr);
@@ -40,11 +40,52 @@ int probeButtonPath(char *newPath)
 			number = tmpStr[strlen(tmpStr)-3] - '0';
 			break;
 		}
-		fclose(fp);
+		fclose(fd);
 		if(returnValue == 1)
 		sprintf(newPath, "%s%d", INPUT_DEVICE_LIST, number);
 		return returnValue;
 	}
+}
+
+int buttonThfunc(void)
+{
+	int readSize, inputIndex;
+	struct input_event stEvent;	
+	BUTTON_MSG_T buttonTxData;
+
+	int msgID = msgget ((key_t)MESSAGE_ID, IPC_CREAT|0666);
+	if(msgID == -1) 
+	{ 
+   		printf("msgID error!\r\n"); 
+   		return -1; 
+	}
+   	int shmID = shmget((key_t)6017, 200, IPC_CREAT|0666);
+   	if(shmID == -1) 
+	{ 
+   		printf("shmID error!\r\n"); 
+   		return -1; 
+	}
+	char *shmemaddr;
+	shmemaddr = shmat(shmID, (void*)NULL, 0);
+	if( ((int)(shmemaddr) == -1) ) 
+	{ 
+   		printf("shmat error!\r\n"); 
+   		return -2; 
+	}      
+
+	pthread_mutex_lock(&lockinput);  // 쓰레드 lock
+	readSize = read(fp, &stEvent, sizeof(stEvent));
+    if(readSize != sizeof(stEvent))
+   	{
+    	return 5;
+	}
+	buttonTxData.messageNum = stEvent.type;
+	buttonTxData.keyInput = stEvent.code;
+	buttonTxData.pressed = stEvent.value;
+
+	msgsnd(msgID, &buttonTxData, sizeof(buttonTxData.keyInput),0);
+	pthread_mutex_unlock(&lockinput);   // 쓰레드 lock 풀어주기
+    return 1;
 }
 
 int buttonInit(void)
@@ -124,45 +165,5 @@ int buttonExit(void)
     close(fp);  
 }
 
-int buttonThfunc(void)
-{
-	int readSize, inputIndex;
-	struct input_event stEvent;	
-	BUTTON_MSG_T buttonTxData;
-
-	int msgID = msgget ((key_t)MESSAGE_ID, IPC_CREAT|0666);
-	if(msgID == -1) 
-	{ 
-   		printf("msgID error!\r\n"); 
-   		return -1; 
-	}
-   	int shmID = shmget((key_t)6017, 200, IPC_CREAT|0666);
-   	if(shmID == -1) 
-	{ 
-   		printf("shmID error!\r\n"); 
-   		return -1; 
-	}
-	char *shmemaddr;
-	shmemaddr = shmat(shmID, (void*)NULL, 0);
-	if( ((int)(shmemaddr) == -1) ) 
-	{ 
-   		printf("shmat error!\r\n"); 
-   		return -2; 
-	}      
-
-	pthread_mutex_lock(&lockinput);  // 쓰레드 lock
-	readSize = read(fp, &stEvent, sizeof(stEvent));
-    if(readSize != sizeof(stEvent))
-   	{
-    	return 5;
-	}
-	buttonTxData.messageNum = stEvent.type;
-	buttonTxData.keyInput = stEvent.code;
-	buttonTxData.pressed = stEvent.value;
-
-	msgsnd(msgID, &buttonTxData, sizeof(buttonTxData.keyInput),0);
-	pthread_mutex_unlock(&lockinput);   // 쓰레드 lock 풀어주기
-    return 1;
-}
 
 
