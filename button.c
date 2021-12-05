@@ -40,11 +40,11 @@ int probeButtonPath(char *newPath)
 			number = tmpStr[strlen(tmpStr)-3] - '0';
 			break;
 		}
+	}
 		fclose(fd);
 		if(returnValue == 1)
 		sprintf(newPath, "%s%d", INPUT_DEVICE_LIST, number);
 		return returnValue;
-	}
 }
 
 int buttonThfunc(void)
