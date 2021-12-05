@@ -23,9 +23,12 @@ int main(void)
         printf("Current scale is: %d\r\n", musicScale[i]);
         usleep(300000);
     }
-
+    printf("BGM1:the Canon\r\n");
     BGM1();
+
+    printf("BGM2:Chopstick March\r\n");
     BGM2();
+    
     printf("buzzer off\r\n");
     buzzerExit();
     return 0;
