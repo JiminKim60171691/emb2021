@@ -24,7 +24,7 @@ int probeButtonPath(char *newPath)
 	int returnValue = 0;
 	int number = 0;
 	FILE *fd = fopen(PROBE_FILE, "rt");
-	while (feof(fd))
+	while (!feof(fd))
 	{
 		char tmpStr[200];
 		fgets(tmpStr,200,fd);
