@@ -19,52 +19,52 @@ int main(void)
     for(i = 0; i < 12; i++)
     {
         buzzerPlaySong(musicScale[4]); // 솔 12번
-        usleep(2500000);
+        usleep(200000);
         buzzerStopSong();
-        usleep(500000);
+        usleep(50000);
     }
     for(i = 0; i < 6; i++)
     {
         buzzerPlaySong(musicScale[6]); // 시 6번
-        usleep(2500000);
+        usleep(200000);
         buzzerStopSong();
-        usleep(500000);
+        usleep(50000);
     }
     for(i = 0; i < 3; i++)
     {
         buzzerPlaySong(musicScale[7]); // 도 도 도
-        usleep(2500000);
+        usleep(200000);
         buzzerStopSong();
-        usleep(500000);
+        usleep(50000);
     }
     buzzerPlaySong(musicScale[7]); // 도
-    usleep(3000000);
+    usleep(300000);
     buzzerPlaySong(musicScale[6]); // 시
-    usleep(3000000);
+    usleep(300000);
     buzzerPlaySong(musicScale[5]); // 라
-    usleep(3000000);
+    usleep(300000);
     for(i = 0; i < 12; i++)
     {
         buzzerPlaySong(musicScale[4]); // 솔 12번
-        usleep(2500000);
+        usleep(200000);
         buzzerStopSong();
-        usleep(500000);
+        usleep(50000);
     }
     for(i = 0; i < 6; i++)
     {
         buzzerPlaySong(musicScale[6]); // 시 6번
-        usleep(2500000);
+        usleep(200000);
         buzzerStopSong();
-        usleep(500000);
+        usleep(50000);
     }
     buzzerPlaySong(musicScale[7]); // 도
-    usleep(3000000);
+    usleep(300000);
     buzzerPlaySong(musicScale[4]); // 솔
-    usleep(3000000);
+    usleep(300000);
     buzzerPlaySong(musicScale[2]); // 미
-    usleep(3000000);
+    usleep(300000);
     buzzerPlaySong(musicScale[0]); // 도
-    usleep(6000000);
+    usleep(600000);
     buzzerStopSong(); // 부저 끄기
     buzzerExit();
     return 0;
