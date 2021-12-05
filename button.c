@@ -88,7 +88,7 @@ int buttonInit(void)
 	}      
 	while (1)
 	{
-		int err = pthread_create(&buttonTh_id, NULL, buttonThfunc, NULL);
+		int err = pthread_create(&buttonTh_id, NULL, &buttonThfunc, NULL);
 		if (err != 0)
 		{
 			printf("thread error!: [%d]\r\n", err);

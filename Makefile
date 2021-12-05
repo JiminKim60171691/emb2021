@@ -10,7 +10,7 @@ button.o: button.h button.c
 	$(CC) button.c -o button.o -c
 
 buttontest: buttontest.c button.h libMyPeri.a
-	$(CC) buttontest.c -lpthread; -o buttontest -l MyPeri -L.
+	$(CC) buttontest.c -lpthread -o buttontest -l MyPeri -L.
 	scp -P30201 ledtest ecube@192.168.0.9:/home/ecube
 clean:
 	rm *.o -rf
