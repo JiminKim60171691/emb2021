@@ -46,7 +46,7 @@ int probeButtonPath(char *newPath)
 int buttonInit(void)
 {
 	int fp;
-	int readSize, inputIdex;
+	int readSize, inputIndex;
 	char inputDevpath[200] = {0,};
 	struct input_event stEvent;
 
@@ -58,9 +58,32 @@ int buttonInit(void)
 	}
 	printf("inputDevpath: %s\r\n", inputDevpath);
     fp = open (inputDevpath, O_RDONLY);
+/*
+   msgID = msgget(MESSAGE_ID, IPC_CREAT|0666;
+   if(msgID == -1) 
+{ 
+   printf("msgID error!\r\n"); 
+   return -1; 
+}
+   int shmID = shmget((key_t)6017, 200, IPC_CREAT|0666);
+   if(shmID == -1) 
+{ 
+   printf("shmID error!\r\n"); 
+   return -1; 
+}
+
+char *shmemaddr;
+shmemaddr = shmat(shmID, (void*)NULL, 0);
+if( ((int)(shmemaddr) == -1) ) 
+{ 
+   printf("shmat error!\r\n"); 
+   return -2; 
+}      
+
+*/
 	while(1)
     {
-        readSize = read(fp, &stEvent, sizeof(stEvent));
+       // readSize = msgrcv(msgID, &stEvent, sizeof(stEvent));
         if(readSize != sizeof(stEvent))
         {
             continue;
