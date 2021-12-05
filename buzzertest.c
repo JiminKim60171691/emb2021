@@ -18,52 +18,52 @@ int main(void)
     int i = 0;
     for(i = 0; i < 12; i++)
     {
-        buzzerPlaySong(musicScale[392]); // 솔 12번
+        buzzerPlaySong(musicScale[4]); // 솔 12번
         usleep(2500000);
         buzzerStopSong();
         usleep(500000);
     }
     for(i = 0; i < 6; i++)
     {
-        buzzerPlaySong(musicScale[494]); // 시 6번
+        buzzerPlaySong(musicScale[6]); // 시 6번
         usleep(2500000);
         buzzerStopSong();
         usleep(500000);
     }
     for(i = 0; i < 3; i++)
     {
-        buzzerPlaySong(musicScale[523]); // 도 도 도
+        buzzerPlaySong(musicScale[7]); // 도 도 도
         usleep(2500000);
         buzzerStopSong();
         usleep(500000);
     }
-    buzzerPlaySong(musicScale[523]); // 도
+    buzzerPlaySong(musicScale[7]); // 도
     usleep(3000000);
-    buzzerPlaySong(musicScale[494]); // 시
+    buzzerPlaySong(musicScale[6]); // 시
     usleep(3000000);
-    buzzerPlaySong(musicScale[440]); // 라
+    buzzerPlaySong(musicScale[5]); // 라
     usleep(3000000);
     for(i = 0; i < 12; i++)
     {
-        buzzerPlaySong(musicScale[392]); // 솔 12번
+        buzzerPlaySong(musicScale[4]); // 솔 12번
         usleep(2500000);
         buzzerStopSong();
         usleep(500000);
     }
     for(i = 0; i < 6; i++)
     {
-        buzzerPlaySong(musicScale[494]); // 시 6번
+        buzzerPlaySong(musicScale[6]); // 시 6번
         usleep(2500000);
         buzzerStopSong();
         usleep(500000);
     }
-    buzzerPlaySong(musicScale[523]); // 도
+    buzzerPlaySong(musicScale[7]); // 도
     usleep(3000000);
-    buzzerPlaySong(musicScale[392]); // 솔
+    buzzerPlaySong(musicScale[4]); // 솔
     usleep(3000000);
-    buzzerPlaySong(musicScale[330]); // 미
+    buzzerPlaySong(musicScale[2]); // 미
     usleep(3000000);
-    buzzerPlaySong(musicScale[262]); // 도
+    buzzerPlaySong(musicScale[0]); // 도
     usleep(6000000);
     buzzerStopSong(); // 부저 끄기
     buzzerExit();
