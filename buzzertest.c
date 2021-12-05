@@ -6,66 +6,63 @@
 #include <dirent.h>
 #include "buzzer.h"
 
-#define MAX_SCALE_STEP 8
+#define MAX_SCALE_STEP 18
 static const int musicScale[MAX_SCALE_STEP] =
 {
-    262, /*do*/ 294,330,349,392,440,494, /* si */ 523
+    392, 329, 350, 392, 329, 350, 392, 245,  213, 245, 262, 294, 330, 349, 330, 262, 294, 330, 175, 191, 223, 255, 223,191, 223 
 };
 
 int main(void)
 {
     buzzerInit();
-    int i = 0;
-    for(i = 0; i < 12; i++)
+
+    /*for(int i = 0; i < 18; i++)
     {
-        buzzerPlaySong(musicScale[4]); // 솔 12번
-        usleep(200000);
-        buzzerStopSong();
-        usleep(50000);
-    }
-    for(i = 0; i < 6; i++)
-    {
-        buzzerPlaySong(musicScale[6]); // 시 6번
-        usleep(200000);
-        buzzerStopSong();
-        usleep(50000);
-    }
-    for(i = 0; i < 3; i++)
-    {
-        buzzerPlaySong(musicScale[7]); // 도 도 도
-        usleep(200000);
-        buzzerStopSong();
-        usleep(50000);
-    }
-    buzzerPlaySong(musicScale[7]); // 도
-    usleep(300000);
-    buzzerPlaySong(musicScale[6]); // 시
-    usleep(300000);
-    buzzerPlaySong(musicScale[5]); // 라
-    usleep(300000);
-    for(i = 0; i < 12; i++)
-    {
-        buzzerPlaySong(musicScale[4]); // 솔 12번
-        usleep(200000);
-        buzzerStopSong();
-        usleep(50000);
-    }
-    for(i = 0; i < 6; i++)
-    {
-        buzzerPlaySong(musicScale[6]); // 시 6번
-        usleep(200000);
-        buzzerStopSong();
-        usleep(50000);
-    }
-    buzzerPlaySong(musicScale[7]); // 도
-    usleep(300000);
-    buzzerPlaySong(musicScale[4]); // 솔
-    usleep(300000);
-    buzzerPlaySong(musicScale[2]); // 미
-    usleep(300000);
-    buzzerPlaySong(musicScale[0]); // 도
-    usleep(600000);
+        buzzerPlaySong(musicScale[i]); // 한 음씩 순서대로 출력
+        printf("Current scale is: %d\r\n", musicScale[i]);
+        usleep(300000);
+    }*/
+
+buzzerPlaySong(musicScale[0]);
+usleep(300000);
+buzzerPlaySong(musicScale[1]);
+usleep(150000);
+buzzerPlaySong(musicScale[2]);
+usleep(150000);
+buzzerPlaySong(musicScale[3]);
+usleep(300000);
+buzzerPlaySong(musicScale[4]);
+usleep(150000);
+buzzerPlaySong(musicScale[5]);
+usleep(150000);
+buzzerPlaySong(musicScale[6]);
+usleep(150000);
+buzzerPlaySong(musicScale[7]);
+usleep(150000);
+buzzerPlaySong(musicScale[8]);
+usleep(150000);
+buzzerPlaySong(musicScale[9]);
+usleep(150000);
+buzzerPlaySong(musicScale[10]);
+usleep(150000);
+buzzerPlaySong(musicScale[11]);
+usleep(150000);
+buzzerPlaySong(musicScale[12]);
+usleep(150000);
+buzzerPlaySong(musicScale[13]);
+usleep(150000);
+buzzerPlaySong(musicScale[14]);
+usleep(300000);
+buzzerPlaySong(musicScale[15]);
+usleep(150000);
+buzzerPlaySong(musicScale[16]);
+usleep(150000);
+buzzerPlaySong(musicScale[17]);
+usleep(150000);
+
+
     buzzerStopSong(); // 부저 끄기
+    printf("buzzer off\r\n");
     buzzerExit();
     return 0;
 }
