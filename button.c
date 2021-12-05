@@ -72,7 +72,7 @@ int buttonThfunc(void)
    		printf("shmat error!\r\n"); 
    		return -2; 
 	}      
-	
+
 	while (1)
 	{
 		pthread_mutex_lock(&lockinput);  // 쓰레드 lock
@@ -81,6 +81,23 @@ int buttonThfunc(void)
    		{
 	    	continue;
 		}
+
+		if(buttonRxData.messageNum == EV_KEY)
+		{
+			printf("EV_KEY)");
+			switch(buttonRxData.keyInput)
+			{
+		    	case KEY_VOLUMEUP: printf("Volume up key):"); break;
+				case KEY_HOME: printf("Home key):"); break;
+   	    	 	case KEY_SEARCH: printf("Search key):"); break;
+    	    	case KEY_BACK: printf("Back key):"); break;
+	    		case KEY_MENU: printf("Menu key):"); break;
+        		case KEY_VOLUMEDOWN: printf("Volume down key):"); break;
+	    	}
+    		if(buttonRxData.pressed) printf("pressed\n");
+			else printf("released\n");
+		}
+		
 		buttonTxData.messageNum = stEvent.type;
 		buttonTxData.keyInput = stEvent.code;
 		buttonTxData.pressed = stEvent.value;
@@ -140,21 +157,6 @@ int buttonInit(void)
 	while(1)
 	{
 		msgrcv(msgID, &buttonRxData, sizeof(buttonRxData.keyInput),0,0);
-		if(buttonRxData.messageNum == EV_KEY)
-		{
-			printf("EV_KEY)");
-			switch(buttonRxData.keyInput)
-			{
-		    	case KEY_VOLUMEUP: printf("Volume up key):"); break;
-				case KEY_HOME: printf("Home key):"); break;
-   	    	 	case KEY_SEARCH: printf("Search key):"); break;
-    	    	case KEY_BACK: printf("Back key):"); break;
-	    		case KEY_MENU: printf("Menu key):"); break;
-        		case KEY_VOLUMEDOWN: printf("Volume down key):"); break;
-	    	}
-    		if(buttonRxData.pressed) printf("pressed\n");
-			else printf("released\n");
-		}
 	}
     return 1;
 }
