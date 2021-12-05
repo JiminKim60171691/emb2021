@@ -1,17 +1,17 @@
 CC = arm-linux-gnueabi-gcc
 AR = arm-linux-gnueabi-ar
 
-all: libMyPeri.a buttontest
+all: libMyPeri.a buzzertest
 
-libMyPeri.a: button.o
-	$(AR) rc libMyPeri.a button.o
+libMyPeri.a: buzzer.o
+	$(AR) rc libMyPeri.a buzzer.o
 
-button.o: button.h button.c
-	$(CC) button.c -o button.o -c
+buzzer.o: buzzer.h buzzer.c
+	$(CC) buzzer.c -o buzzer.o -c
 
-buttontest: buttontest.c button.h libMyPeri.a
-	$(CC) buttontest.c -o buttontest -l MyPeri -L. -lpthread
-	scp buttontest ecube@192.168.0.9:/home/ecube
+buzzertest: buzzertest.c buzzer.h libMyPeri.a
+	$(CC) buzzertest.c -o buzzertest -l MyPeri -L.
+	scp buzzertest ecube@192.168.0.9:/home/ecube
 clean:
 	rm *.o -rf
 	rm *.a -rf
