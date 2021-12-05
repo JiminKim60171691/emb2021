@@ -99,6 +99,21 @@ int buttonInit(void)
 			continue;
 		}
 		msgrcv(msgID, &buttonRxData, sizeof(buttonRxData.keyInput),0,0);
+		if(buttonRxData.messageNum == EV_KEY)
+		{
+	    	printf("EV_KEY)");
+	    	switch(buttonRxData.keyInput)
+	    	{
+		    	case KEY_VOLUMEUP: printf("Volume up key):"); break;
+	    		case KEY_HOME: printf("Home key):"); break;
+            	case KEY_SEARCH: printf("Search key):"); break;
+    	    	case KEY_BACK: printf("Back key):"); break;
+    	    	case KEY_MENU: printf("Menu key):"); break;
+            	case KEY_VOLUMEDOWN: printf("Volume down key):"); break;
+    		}
+    		if(buttonRxData.pressed) printf("pressed\n");
+    		else printf("released\n");
+   		}
 		pthread_join(buttonTh_id, NULL);
 	}
     return 1;
@@ -141,21 +156,6 @@ int buttonThfunc(void)
    	{
     	return 5;
 	}
-	if(stEvent.type == EV_KEY)
-	{
-	    printf("EV_KEY)");
-	    switch(stEvent.code)
-	    {
-		    case KEY_VOLUMEUP: printf("Volume up key):"); break;
-	    	case KEY_HOME: printf("Home key):"); break;
-            case KEY_SEARCH: printf("Search key):"); break;
-    	    case KEY_BACK: printf("Back key):"); break;
-    	    case KEY_MENU: printf("Menu key):"); break;
-            case KEY_VOLUMEDOWN: printf("Volume down key):"); break;
-    	}
-    	if(stEvent.value) printf("pressed\n");
-    	else printf("released\n");
-    }
 	buttonTxData.messageNum = stEvent.type;
 	buttonTxData.keyInput = stEvent.code;
 	buttonTxData.pressed = stEvent.value;
