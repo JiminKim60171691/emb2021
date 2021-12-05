@@ -82,10 +82,14 @@ int buttonThfunc(void)
 	    	continue;
 		}
 
-		if(buttonRxData.messageNum == EV_KEY)
+		buttonTxData.messageNum = stEvent.type;
+		buttonTxData.keyInput = stEvent.code;
+		buttonTxData.pressed = stEvent.value;
+
+		if(buttonTxData.messageNum == EV_KEY)
 		{
 			printf("EV_KEY)");
-			switch(buttonRxData.keyInput)
+			switch(buttonTxData.keyInput)
 			{
 		    	case KEY_VOLUMEUP: printf("Volume up key):"); break;
 				case KEY_HOME: printf("Home key):"); break;
@@ -94,13 +98,9 @@ int buttonThfunc(void)
 	    		case KEY_MENU: printf("Menu key):"); break;
         		case KEY_VOLUMEDOWN: printf("Volume down key):"); break;
 	    	}
-    		if(buttonRxData.pressed) printf("pressed\n");
+    		if(buttonTxData.pressed) printf("pressed\n");
 			else printf("released\n");
 		}
-		
-		buttonTxData.messageNum = stEvent.type;
-		buttonTxData.keyInput = stEvent.code;
-		buttonTxData.pressed = stEvent.value;
 
 		msgsnd(msgID, &buttonTxData, sizeof(buttonTxData.keyInput),0);
 		pthread_mutex_unlock(&lockinput);   // 쓰레드 lock 풀어주기
