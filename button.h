@@ -12,4 +12,5 @@ typedef struct
 int buttonInit(void);
 int buttonThfunc(void);
 int buttonExit(void);
+int probeButtonPath(char *newPath);
 #endif
