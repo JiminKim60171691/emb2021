@@ -94,6 +94,10 @@ int buttonInit(void)
 			printf("thread error!: [%d]\r\n", err);
 			return -1;
 		}
+		if(buttonThfunc == 5)
+		{
+			continue;
+		}
 		msgrcv(msgID, &buttonRxData, sizeof(buttonRxData.keyInput),0,0);
 		pthread_join(buttonTh_id, NULL);
 	}
@@ -135,7 +139,7 @@ int buttonThfunc(void)
 	readSize = read(fp, &stEvent, sizeof(stEvent));
     if(readSize != sizeof(stEvent))
    	{
-    	continue;
+    	return 5;
 	}
 	if(stEvent.type == EV_KEY)
 	{
@@ -152,10 +156,13 @@ int buttonThfunc(void)
     	if(stEvent.value) printf("pressed\n");
     	else printf("released\n");
     }
-	buttonTxData = stEvent;
+	buttonTxData.messageNum = stEvent.type;
+	buttonTxData.keyInput = stEvent.code;
+	buttonTxData.pressed = stEvent.value;
+
 	msgsnd(msgID, &buttonTxData, sizeof(buttonTxData.keyInput),0);
 	pthread_mutex_unlock(&lockinput);   // 쓰레드 lock 풀어주기
-    
+    return 1;
 }
 
 
