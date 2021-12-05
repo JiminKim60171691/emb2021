@@ -11,7 +11,7 @@ button.o: button.h button.c
 
 buttontest: buttontest.c button.h libMyPeri.a
 	$(CC) buttontest.c -o buttontest -l MyPeri -L. -lpthread
-	scp -P30201 ledtest ecube@192.168.0.9:/home/ecube
+	scp buttontest ecube@192.168.0.9:/home/ecube
 clean:
 	rm *.o -rf
 	rm *.a -rf
