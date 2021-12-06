@@ -1,18 +1,18 @@
 CC = arm-linux-gnueabi-gcc
 AR = arm-linux-gnueabi-ar
 
-all: libMyPeri.a buzzertest
+all: libMyPeri.a fndtest
 
-libMyPeri.a: buzzer.o
-	$(AR) rc libMyPeri.a buzzer.o
+libMyPeri.a: fnd.o
+	$(AR) rc libMyPeri.a fnd.o
 
-buzzer.o: buzzer.h buzzer.c
-	$(CC) buzzer.c -o buzzer.o -c
+fnd.o: fnd.h fnddrv.h fnd.c
+	$(CC) fnd.c -o fnd.o -c
 
-buzzertest: buzzertest.c buzzer.h libMyPeri.a
-	$(CC) buzzertest.c -o buzzertest -l MyPeri -L.
-	scp buzzertest ecube@192.168.0.9:/home/ecube
+fndtest: fndtest.c fnd.h libMyPeri.a
+	$(CC) fndtest.c -o fndtest -l MyPeri -L.
+	scp fndtest ecube@192.168.0.9:/home/ecube
 clean:
 	rm *.o -rf
 	rm *.a -rf
-	rm ledtest -rf
+	rm fndtest -rf
