@@ -45,7 +45,7 @@ int lcdtextwrite(const char *str1, const char *str2, int lineFlag)
 	int len; 
 	
 	memset(&stlcd,0,sizeof(stTextLCD));  // 구조체 초기화
-	linenum = strtol(lineFlag,NULL,10);  // 라인 넘버
+	linenum = lineFlag;
 	printf("linenum :%d\n", linenum);
 	
 	if ( linenum == 1) // firsst line
