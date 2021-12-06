@@ -34,8 +34,10 @@ int textlcdExit(void)
 
 int textlcdclear(void)
 {
-	lcdtextwrite(NULL,NULL,1);
-	lcdtextwrite(NULL,NULL,2);
+	const char s1[16] = 0;
+	const char s2[16] = 0;
+	lcdtextwrite(s1,s2,1);
+	lcdtextwrite(s1,s2,2);
 }
 
 int lcdtextwrite(const char *str1, const char *str2, int lineFlag)
@@ -52,10 +54,7 @@ int lcdtextwrite(const char *str1, const char *str2, int lineFlag)
 	{
 		stlcd.cmdData = CMD_DATA_WRITE_LINE_1;
 		printf("string:%s\n",str1);
-		if(str1 != NULL)
-		{len = strlen(str1);}
-		else
-		{len = 1;}
+		len = strlen(str1);
 		if ( len > COLUMN_NUM)
 		{
 			memcpy(stlcd.TextData[stlcd.cmdData - 1],str1,COLUMN_NUM);
@@ -71,10 +70,6 @@ int lcdtextwrite(const char *str1, const char *str2, int lineFlag)
 		stlcd.cmdData = CMD_DATA_WRITE_LINE_2;
 		printf("string:%s\n",str2);
 		len = strlen(str2);
-		if(str2 != NULL)
-		{len = strlen(str1);}
-		else
-		{len = 1;}
 		if ( len > COLUMN_NUM)
 		{
 			memcpy(stlcd.TextData[stlcd.cmdData - 1],str2,COLUMN_NUM);
