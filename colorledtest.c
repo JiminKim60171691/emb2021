@@ -21,21 +21,21 @@
 
 #define PWM_PERIOD_NS 1000000 //ns. = 1ms = 1khz
 
-int main(int argc, char *argv[])
+int main(void)
 {
-    if(argc !=4)
+   /* if(argc !=4)
     {
         printf("colorledtest.elf 0-100 0-100 0-100\r\n");
         printf("ex) colorledtest.elf 100 100 100 ==> full white color\r\n");
         
         return 0;
-    }
+    }*/
     pwmLedInit();
-    pwmSetPercent(atoi(argv[1]),0);
+    pwmSetPercent(50,0);
     sleep(1);
-    pwmSetPercent(atoi(argv[2]),1);
+    pwmSetPercent(70,1);
     sleep(1);
-    pwmSetPercent(atoi(argv[3]),2);
+    pwmSetPercent(40,2);
     sleep(1);
     pwmInactiveAll();
     return 0;
