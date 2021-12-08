@@ -31,12 +31,20 @@ int main(void)
         return 0;
     }*/
     pwmLedInit();
-    pwmSetPercent(50,0);
-    sleep(1);
-    pwmSetPercent(70,1);
-    sleep(1);
-    pwmSetPercent(40,2);
-    sleep(1);
+
+for(int f=0; f<10; f++)
+{
+
+    for(int i=0; i<3; i++)
+{   
+    pwmSetPercent(0,i);
+    usleep(50000);
+    pwmSetPercent(100,i);
+    usleep(50000);
+       
+}
+  }
+
     pwmInactiveAll();
     return 0;
 }
