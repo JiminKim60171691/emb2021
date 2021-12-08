@@ -23,13 +23,6 @@
 
 int main(void)
 {
-   /* if(argc !=4)
-    {
-        printf("colorledtest.elf 0-100 0-100 0-100\r\n");
-        printf("ex) colorledtest.elf 100 100 100 ==> full white color\r\n");
-        
-        return 0;
-    }*/
     pwmLedInit();
 
 for(int f=0; f<10; f++)
