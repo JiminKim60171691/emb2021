@@ -1,18 +1,18 @@
 CC = arm-linux-gnueabi-gcc
 AR = arm-linux-gnueabi-ar
 
-all: libMyPeri.a temptest
+all: libMyPeri.a acceltest
 	
-libMyPeri.a: temp.o
-	$(AR) rc libMyPeri.a temp.o
+libMyPeri.a: accel.o
+	$(AR) rc libMyPeri.a accel.o
 
-temp.o: temp.h temp.c
-	$(CC) temp.c -o temp.o -c
+accel.o: accel.h accel.c
+	$(CC) accel.c -o accel.o -c
 
-temptest: temptest.c temp.h libMyPeri.a
-	$(CC) temptest.c -o temptest -l MyPeri -L.
-	scp temptest ecube@192.168.0.9:/home/ecube/
+acceltest: acceltest.c accel.h libMyPeri.a
+	$(CC) acceltest.c -o acceltest -l MyPeri -L.
+	scp acceltest ecube@192.168.0.9:/home/ecube/
 clean:
 	rm *.o -rf
 	rm *.a -rf
-	rm temptest -rf
+	rm acceltest -rf
