@@ -128,6 +128,29 @@ int pwmStartAll(void)  //PWM 시작
     return 1;
 }
 
+void Pwmanswer(void)
+{
+    for(int f=0; f<5; f++)
+    {
+        for(int i=0; i<3; i++)
+     {   
+        pwmSetPercent(0,i);
+        usleep(50000);
+        pwmSetPercent(100,i);
+        usleep(50000);
+     }
+  }
+}
+
+void Pwmwrong(void)
+{
+    pwmSetPercent(0,0);
+    pwmSetPercent(0,1);
+    pwmSetPercent(100,2);
+    usleep(500000);
+    pwmActiveAll();
+}
+
 int pwmLedInit(void)       //Initialize
 {
     pwmActiveAll();

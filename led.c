@@ -97,8 +97,9 @@ int ledLibwrong(void)
     for(int i=0;i<3;i++)
     {
         ledLibRaw(0xff);
-        usleep(500000);
-        ledLibRaw(0);
         usleep(200000);
+        ledLibRaw(0);
+        usleep(100000);
     }
 }
+

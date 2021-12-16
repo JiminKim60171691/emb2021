@@ -4,5 +4,5 @@
 int fndInit(void);
 int fndDisp(int num , int dotflag);  // num 숫자 fnd에 띄우기 
 int fndOff();
-int fndcounter(int count);
+int fndcounter();
 #endif

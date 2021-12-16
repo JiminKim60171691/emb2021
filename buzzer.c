@@ -271,3 +271,4 @@ int BGM2(void)
     usleep(600000);
     buzzerStopSong(); // 부저 끄기
 }
+

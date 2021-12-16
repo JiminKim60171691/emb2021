@@ -22,8 +22,10 @@ int fndInit(void)
 	if ( fd < 0 )
 	{
 		perror("driver open error.\n");
+        
 		return 0;
 	}	
+    fndDisp(0,0);
 }
 
 int fndDisp(int num , int dotflag)
@@ -47,16 +49,12 @@ int fndDisp(int num , int dotflag)
 	return 1;
 }
 
-int fndcounter(int count)
+int fndcounter()
 {
-	while(1)
-	{
-        fndDisp(count,0);
-		sleep(1);
-        count--;
-		if (count == 0)
-		break;
-	}
+	int c;
+	fndDisp(c,0);
+	sleep(1);
+	c++;
 }
 
 int fndOff()

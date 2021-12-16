@@ -34,8 +34,8 @@ int textlcdExit(void)
 
 int textlcdclear(void)
 {
-	const char s1[16] = 0;
-	const char s2[16] = 0;
+	const char s1[16] = {};
+	const char s2[16] = {};
 	lcdtextwrite(s1,s2,1);
 	lcdtextwrite(s1,s2,2);
 }

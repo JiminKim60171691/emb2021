@@ -182,6 +182,306 @@ while(1)
 				    }
 		    }
 	    }
+        // 1번 게임 2번째 문제
+        FrameBuffer_init();
+        bmp_open("stage2.bmp");
+        sleep(4);
+        while (1)
+	    {
+            l=0;
+            FrameBuffer_init();
+            bmp_open("cat.bmp");  // 1번 문제
+		    msgrcv(msgID, &recvMsg, sizeof (recvMsg)-sizeof (long int), 0, 0);
+		    //이떄는 터치가 일어나거나 아니면 터리가 끝날때만 여기에 들어옴!
+		    if(recvMsg.keyInput == 999)
+		    {
+				if (recvMsg.pressed == 1)
+				{
+			    	if (recvMsg.x <270 && recvMsg.y < 270)
+			    	{
+                        FrameBuffer_init();
+                        bmp_open("cat1.bmp");  // 1번 문제
+                        Pwmanswer();
+                        sleep(1);
+			    		printf ("cat answer!\r\n");
+                        break;
+			    	}
+			    	else
+				    {
+                        FrameBuffer_init();
+                        bmp_open("x.bmp");
+				    	printf ("You touched anywhere... maybe center? :%d %d\r\n",recvMsg.x, recvMsg.y);
+                        Pwmwrong();
+                        l=1;
+                        usleep(500000);
+                        continue;
+				    }
+				    }
+		    }
+	    }
+
+        // 1번 게임 3번째 문제
+        FrameBuffer_init();
+        bmp_open("stage3.bmp");
+        sleep(4);
+        while (1)
+	    {
+            l=0;
+            FrameBuffer_init();
+            bmp_open("dog.bmp");  // 1번 문제
+		    msgrcv(msgID, &recvMsg, sizeof (recvMsg)-sizeof (long int), 0, 0);
+		    //이때는 터치가 일어나거나 아니면 터리가 끝날때만 여기에 들어옴!
+		    if(recvMsg.keyInput == 999)
+		    {
+				if (recvMsg.pressed == 1)
+				{
+			    	if (recvMsg.x >730 && recvMsg.y < 270)
+			    	{
+                        FrameBuffer_init();
+                        bmp_open("dog1.bmp");  // 1번 문제
+                        Pwmanswer();
+                        sleep(1);
+			    		printf ("dog answer!\r\n");
+                        break;
+			    	}
+			    	else
+				    {
+                        FrameBuffer_init();
+                        bmp_open("x.bmp");
+				    	printf ("You touched anywhere... maybe center? :%d %d\r\n",recvMsg.x, recvMsg.y);
+                        Pwmwrong();
+                        l=1;
+                        usleep(500000);
+                        continue;
+				    }
+				    }
+		    }
+	    }
+
+        // 게임 시작,종료 선택
+        FrameBuffer_init();
+        bmp_open("congratulations.bmp");
+        while(1)
+        {
+            msgrcv(msgID, &recvMsg, sizeof (recvMsg)-sizeof (long int), 0, 0);
+	        if(recvMsg.keyInput == 999)
+	        {
+	        	if (recvMsg.pressed == 1)
+	        	{
+                    if (recvMsg.x >550 && recvMsg.y < 300)
+			    	{break;}
+                    else
+                    { p=1;break;}
+	    	    }
+	        }
+        }
+    }
+
+    // 2번 게임 시작
+    if(select == 2)
+    {
+        // 2-1
+        while (1)
+	    {
+            l=0;
+            FrameBuffer_init();
+            bmp_open("milk.bmp");  // 1번 문제
+		    msgrcv(msgID, &recvMsg, sizeof (recvMsg)-sizeof (long int), 0, 0);
+		    //이떄는 터치가 일어나거나 아니면 터리가 끝날때만 여기에 들어옴!
+		    if(recvMsg.keyInput == 999)
+		    {
+				if (recvMsg.pressed == 1)
+				{
+			    	if ((300<recvMsg.x && recvMsg.x<600) && (100<recvMsg.y && recvMsg.y <170))
+			    	{
+                        FrameBuffer_init();
+                        bmp_open("milk1.bmp");  // 1번 문제
+                        Pwmanswer();
+                        sleep(1);
+			    		printf ("milk answer!\r\n");
+                        break;
+			    	}
+			    	else
+				    {
+                        FrameBuffer_init();
+                        bmp_open("x.bmp");
+				    	printf ("You touched anywhere... maybe center? :%d %d\r\n",recvMsg.x, recvMsg.y);
+                        Pwmwrong();
+                        l=1;
+                        usleep(500000);
+                        continue;
+				    }
+				    }
+		    }
+	    }
+
+        //2-2
+        while (1)
+	    {
+            l=0;
+            FrameBuffer_init();
+            bmp_open("belt.bmp");  // 2번문제
+		    msgrcv(msgID, &recvMsg, sizeof (recvMsg)-sizeof (long int), 0, 0);
+		    //이떄는 터치가 일어나거나 아니면 터리가 끝날때만 여기에 들어옴!
+		    if(recvMsg.keyInput == 999)
+		    {
+				if (recvMsg.pressed == 1)
+				{
+			    	if ((300<recvMsg.x && recvMsg.x<600) && (290<recvMsg.y && recvMsg.y <360))
+			    	{
+                        FrameBuffer_init();
+                        bmp_open("belt1.bmp");  // 1번 문제
+                        Pwmanswer();
+                        sleep(1);
+			    		printf ("belt answer!\r\n");
+                        break;
+			    	}
+			    	else
+				    {
+                        FrameBuffer_init();
+                        bmp_open("x.bmp");
+				    	printf ("You touched anywhere... maybe center? :%d %d\r\n",recvMsg.x, recvMsg.y);
+                        Pwmwrong();
+                        l=1;
+                        usleep(500000);
+                        continue;
+				    }
+				    }
+		    }
+	    }
+
+        //2-3
+        while (1)
+	    {
+            l=0;
+            FrameBuffer_init();
+            bmp_open("lee.bmp");  // 3번 문제
+		    msgrcv(msgID, &recvMsg, sizeof (recvMsg)-sizeof (long int), 0, 0);
+		    //이때는 터치가 일어나거나 아니면 터리가 끝날때만 여기에 들어옴!
+		    if(recvMsg.keyInput == 999)
+		    {
+				if (recvMsg.pressed == 1)
+				{
+			    	if ((300<recvMsg.x && recvMsg.x<600) && (220<recvMsg.y && recvMsg.y <290))
+			    	{
+                        FrameBuffer_init();
+                        bmp_open("lee1.bmp");  // 1번 문제
+                        Pwmanswer();
+                        sleep(1);
+			    		printf ("lee answer!\r\n");
+                        break;
+			    	}
+			    	else
+				    {
+                        FrameBuffer_init();
+                        bmp_open("x.bmp");
+				    	printf ("You touched anywhere... maybe center? :%d %d\r\n",recvMsg.x, recvMsg.y);
+                        Pwmwrong();
+                        l=1;
+                        usleep(500000);
+                        continue;
+				    }
+				    }
+		    }
+	    }      
+
+        // 게임 시작,종료 선택
+        FrameBuffer_init();
+        bmp_open("congratulations.bmp");
+        while(1)
+        {
+            msgrcv(msgID, &recvMsg, sizeof (recvMsg)-sizeof (long int), 0, 0);
+	        if(recvMsg.keyInput == 999)
+	        {
+	        	if (recvMsg.pressed == 1)
+	        	{
+                    if (recvMsg.x >550 && recvMsg.y < 300)
+			    	{break;}
+                    else
+                    { p=1;break;}
+	    	    }
+	        }
+        } 
+    }
+
+    // 3번 게임 시작
+    if(select == 3)
+    {
+        // 게임 1번째 문제
+        FrameBuffer_init();
+        bmp_open("stage4.bmp");
+        sleep(4);
+        while (1)
+	    {
+            l=0;
+            FrameBuffer_init();
+            bmp_open("medi.bmp");  // 1번 문제
+		    msgrcv(msgID, &recvMsg, sizeof (recvMsg)-sizeof (long int), 0, 0);
+		    //이떄는 터치가 일어나거나 아니면 터리가 끝날때만 여기에 들어옴!
+		    if(recvMsg.keyInput == 999)
+		    {
+				if (recvMsg.pressed == 1)
+				{
+                    FrameBuffer_init();
+                    bmp_open("medi1.bmp");  // 1번 문제
+                    Pwmanswer();
+                    sleep(4);
+		    		printf ("medi answer!\r\n");
+                    break;   	
+				}
+		    }
+	    }
+
+        // 게임 2번째 문제
+        FrameBuffer_init();
+        bmp_open("stage5.bmp");
+        sleep(5);
+        while (1)
+	    {
+            l=0;
+            FrameBuffer_init();
+            bmp_open("updown.bmp");  // 1번 문제
+		    msgrcv(msgID, &recvMsg, sizeof (recvMsg)-sizeof (long int), 0, 0);
+		    //이떄는 터치가 일어나거나 아니면 터리가 끝날때만 여기에 들어옴!
+		    if(recvMsg.keyInput == 999)
+		    {
+				if (recvMsg.pressed == 1)
+				{
+                    FrameBuffer_init();
+                    bmp_open("updown1.bmp");  // 1번 문제
+                    Pwmanswer();
+                    sleep(5);
+		    		printf ("updown answer!\r\n");
+                    break;   	
+				}
+		    }
+		}
+	    
+
+        // 게임 3번째 문제
+        FrameBuffer_init();
+        bmp_open("stage6.bmp");
+        sleep(4);
+        while (1)
+	    {
+            l=0;
+            FrameBuffer_init();
+            bmp_open("AB.bmp");  // 1번 문제
+		    msgrcv(msgID, &recvMsg, sizeof (recvMsg)-sizeof (long int), 0, 0);
+		    //이때는 터치가 일어나거나 아니면 터리가 끝날때만 여기에 들어옴!
+		    if(recvMsg.keyInput == 999)
+		    {
+				if (recvMsg.pressed == 1)
+				{
+			    	FrameBuffer_init();
+                    bmp_open("AB1.bmp");  // 1번 문제
+                    Pwmanswer();
+                    sleep(4);
+		    		printf ("AB answer!\r\n");
+                    break;
+				}
+		    }
+	    }  
 
         // 게임 시작,종료 선택
         FrameBuffer_init();
