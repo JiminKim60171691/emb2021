@@ -25,7 +25,7 @@ int main(void)
 {
     pwmLedInit();
 
-for(int f=0; f<10; f++)
+for(int f=0; f<5; f++)
 {
 
     for(int i=0; i<3; i++)
