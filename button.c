@@ -16,7 +16,6 @@
 #define HAVE_TO_FIND_2 "H: Handlers=kbd event"
 
 pthread_t buttonTh_id;
-pthread_mutex_t lockinput;
 static int fp;
 
 int probeButtonPath(char *newPath)
@@ -52,8 +51,10 @@ int buttonThfunc(void)
 	int readSize, inputIndex;
 	struct input_event stEvent;	
 	BUTTON_MSG_T buttonTxData;
-
-	int msgID = msgget ((key_t)MESSAGE_ID, IPC_CREAT|0666);
+	buttonTxData.messageNum =0;
+	buttonTxData.keyInput =0;
+	buttonTxData.pressed =0;
+	int msgID = msgget ((key_t)MESSAGE_BID, IPC_CREAT|0666);
 	if(msgID == -1) 
 	{ 
    		printf("msgID error!\r\n"); 
@@ -75,7 +76,6 @@ int buttonThfunc(void)
 
 	while (1)
 	{
-		pthread_mutex_lock(&lockinput);  // 쓰레드 lock
 		readSize = read(fp, &stEvent, sizeof(stEvent));
  	   if(readSize != sizeof(stEvent))
    		{
@@ -100,10 +100,11 @@ int buttonThfunc(void)
 	    	}
     		if(buttonTxData.pressed) printf("pressed\n");
 			else printf("released\n");
+			msgsnd(msgID, &buttonTxData, sizeof(buttonTxData.keyInput),0);
+			break;
 		}
 
-		msgsnd(msgID, &buttonTxData, sizeof(buttonTxData.keyInput),0);
-		pthread_mutex_unlock(&lockinput);   // 쓰레드 lock 풀어주기
+		
 	}
     return 1;
 }
@@ -112,23 +113,18 @@ int buttonInit(void)
 {
 	char inputDevpath[200] = {0,};
 	BUTTON_MSG_T buttonRxData;
+	buttonRxData.keyInput = 0;
 	if ( probeButtonPath(inputDevpath) == 0)
 	{
 		printf("ERROR! File Not Found!\r\n");
 		printf("Did you insmod?\r\n");
-		return 0;
+		return -1;
 	}
 
 	printf("inputDevpath: %s\r\n", inputDevpath);
     fp = open (inputDevpath, O_RDONLY);
 
-	if (pthread_mutex_init(&lockinput, NULL) != 0)  // 무택스 객체 초기화
-	{
-	printf ("\n Mutex Init Failed!!\n");
-	return 1;
-	}  // 초기화 실패하는 것을 출력으로 알려주는 if 문
-
-	int msgID = msgget ((key_t)MESSAGE_ID, IPC_CREAT|0666);
+	int msgID = msgget ((key_t)MESSAGE_BID, IPC_CREAT|0666);
 	if(msgID == -1) 
 	{ 
    		printf("msgID error!\r\n"); 
@@ -157,8 +153,12 @@ int buttonInit(void)
 	while(1)
 	{
 		msgrcv(msgID, &buttonRxData, sizeof(buttonRxData.keyInput),0,0);
+		shmdt(shmemaddr);
+		if(buttonRxData.keyInput == KEY_HOME) {return 1;}
+		else if(buttonRxData.keyInput == KEY_BACK) {return 2;}
+		else if (buttonRxData.keyInput == KEY_SEARCH) {return 3;}
+		else {return 0;}
 	}
-    return 1;
 }
 
 int buttonExit(void)
