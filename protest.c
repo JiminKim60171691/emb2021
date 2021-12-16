@@ -511,6 +511,7 @@ while(1)
     pthread_join(tid[2],NULL);
     buzzerStopSong();
     ledLibExit();
+    Pwmoff();
     pwmInactiveAll();
     buzzerExit();
     buttonExit();

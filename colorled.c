@@ -163,3 +163,9 @@ int pwmLedInit(void)       //Initialize
     pwmStartAll();
     return 0;
 }
+void Pwmoff(void)
+{
+    pwmSetPercent(0,0);
+    pwmSetPercent(0,1);
+    pwmSetPercent(0,2);
+}
